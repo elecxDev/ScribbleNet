@@ -1,0 +1,47 @@
+# ============================================================
+# ScribbleNet .gitignore
+# ============================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env
+
+# Data (large files)
+data/raw/
+models/checkpoints/
+models/exported/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Misc
+misc/
+*.bak
+*.tmp

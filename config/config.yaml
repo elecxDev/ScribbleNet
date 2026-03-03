@@ -1,0 +1,79 @@
+# ============================================================
+# ScribbleNet - Configuration
+# Transformer-Based Handwritten Word Recognition System
+# ============================================================
+
+project:
+  name: "ScribbleNet"
+  version: "1.0.0"
+  description: "Transformer-Based Handwritten Word Recognition System"
+
+paths:
+  data_root: "data"
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  splits_dir: "data/splits"
+  models_dir: "models"
+  checkpoints_dir: "models/checkpoints"
+  exported_dir: "models/exported"
+  logs_dir: "logs"
+  misc_dir: "misc"
+
+dataset:
+  csv_file: "data/splits/train.csv"
+  train_csv: "data/splits/train.csv"
+  val_csv: "data/splits/val.csv"
+  test_csv: "data/splits/test.csv"
+  master_csv: "data/processed/cvl_words_dataset.csv"
+  raw_dataset_dir: "data/raw/cvl-database-1-1"
+  image_extension: ".tif"
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+
+model:
+  name: "microsoft/trocr-base-handwritten"
+  max_target_length: 32
+  freeze_encoder: true
+  num_beams: 4
+
+training:
+  batch_size: 16
+  num_epochs: 25
+  learning_rate: 5.0e-5
+  weight_decay: 0.01
+  warmup_steps: 500
+  max_grad_norm: 1.0
+  early_stopping_patience: 5
+  save_best_only: true
+  fp16: true
+  dataloader_num_workers: 4
+
+evaluation:
+  batch_size: 32
+  num_beams: 4
+
+preprocessing:
+  target_height: 384
+  target_width: 384
+  grayscale: true
+  noise_reduction: true
+  adaptive_threshold: true
+  contrast_enhancement: true
+  gaussian_blur_kernel: 3
+
+augmentation:
+  enabled: false
+  rotation_range: 5
+  scale_range: [0.9, 1.1]
+  brightness_range: [0.8, 1.2]
+
+frontend:
+  title: "ScribbleNet - Handwritten Word Recognition"
+  description: "Upload a handwritten word image and get AI-powered transcription"
+  port: 8501
+
+logging:
+  level: "INFO"
+  file: "logs/scribblenet.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
